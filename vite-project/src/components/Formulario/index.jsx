@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import pokebola from "../../assets/pokebola.png";
 import treinador from "../../assets/treinador.png";

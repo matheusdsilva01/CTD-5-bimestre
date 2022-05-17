@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { SolicitacaoContext } from "../../context/contextoFormulario";
 
 const Input = ({ name, label, type = "text" }) => {
+  const [solicitacaoValue, setSolicitacaoValue] = useState("");
+
+
+  const { criarSolicitacao } = useContext(SolicitacaoContext)
   // Aqui devemos acessar o estado global para obter os dados
   // do formulário e uma maneira de atualizá-los.
 
@@ -8,6 +13,8 @@ const Input = ({ name, label, type = "text" }) => {
 
   const onChange = (e) => {
     // Aqui devemos atualizar o estado local do input
+    let {value} = e.target;
+    setSolicitacaoValue(value)
   };
 
   const onBlur = (e) => {
@@ -17,6 +24,7 @@ const Input = ({ name, label, type = "text" }) => {
     // cada entrada.
     // DICA: Podemos usar o nome de cada entrada para salvar
     // os dados no estado global usando uma notação { chave: valor }
+    criarSolicitacao(name, solicitacaoValue)
   };
 
   return (
@@ -24,7 +32,7 @@ const Input = ({ name, label, type = "text" }) => {
       <label htmlFor={name}>{label}</label>
       <input
         type={type}
-        value={"Sempre tenho o mesmo valor XD"}
+        value={solicitacaoValue}
         id={name}
         onChange={onChange}
         onBlur={onBlur}
