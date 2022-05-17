@@ -5,8 +5,8 @@ import { SolicitacaoContext } from "../../context/contextoFormulario";
 const Detalhe = () => {
 
   // Aqui devemos pegar os dados do formulário para podermos mostrá-lo em a visualização.
-  const { solicitacao } = useContext(SolicitacaoContext)
-
+  const { state } = useContext(SolicitacaoContext)
+ console.log(state)
 
   return (
     <div className="detalhe-formulario">
@@ -16,15 +16,19 @@ const Detalhe = () => {
       <section className="dados-cliente">
         <h4>Dados do Treinador</h4>
         <div className="lista">
-          <p>Nome:{`${solicitacao.nome}`}</p>
-          <p>Sobrenome:{`${solicitacao.sobrenome}`}</p>
-          <p>Email:{`${solicitacao.email}`}</p>
+          <p>Nome:{`${state.treinador.nome}`}</p>
+          <p>Sobrenome:{`${state.treinador.sobrenome}`}</p>
+          <p>Email:{`${state.treinador.email}`}</p>
         </div>
       </section>
       <section className="dados-cliente">
         <h4>Dados do Pokémon</h4>
         <div className="lista">
-          <p>Nome:{`${solicitacao.nomePokemon}`}</p>
+          <p>Nome:{`${state.pokemon.nomePokemon}`}</p>
+          <p>Tipo pokemon:{`${state.pokemon.tipoPokemon}`}</p>
+          <p>Elemento:{`${state.pokemon.elemento}`}</p>
+          <p>Altura:{`${state.pokemon.altura}`}</p>
+          <p>Idade:{`${state.pokemon.idade}`}</p>
         </div>
       </section>
       <button
