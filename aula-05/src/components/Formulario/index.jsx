@@ -39,20 +39,20 @@ const Formulario = () => {
                 <img src={treinador} alt="treinador" />
                 <span>Treinador</span>
               </p>
-              <Input refe="TREINADOR" name="nome" label="Nome" />
-              <Input refe="TREINADOR" name="sobrenome" label="Sobrenome" />
-              <Input refe="TREINADOR" name="email" label="Email" type="email" />
+              <Input type="text" refe="TREINADOR" name="nome" label="Nome" />
+              <Input type="text" refe="TREINADOR" name="sobrenome" label="Sobrenome" />
+              <Input type="email" refe="TREINADOR" name="email" label="Email" />
             </div>
             <div>
               <p className="nome-secao">
                 <img src={pikachu} alt="pikachu" />
                 <span>Pokémon</span>
               </p>
-              <Input refe="POKEMON" name="nomePokemon" label="Nome" />
-              <Input refe="POKEMON" name="tipoPokemon" label="Tipo pokemon" />
-              <Input refe="POKEMON" name="elemento" label="Elemento" />
-              <Input refe="POKEMON" name="altura" label="Altura" />
-              <Input refe="POKEMON" name="idade" label="Idade" />
+              <Input refe="POKEMON" type="text" name="nomePokemon" label="Nome" />
+              <Input refe="POKEMON" type="datalist" name="tipoPokemon" label="Tipo pokemon" />
+              <Input refe="POKEMON" type="text" name="elemento" label="Elemento" />
+              <Input refe="POKEMON" type="text" name="altura" label="Altura" />
+              <Input refe="POKEMON" type="text" name="idade" label="Idade" />
             </div>
           </div>
           <Detalhe />

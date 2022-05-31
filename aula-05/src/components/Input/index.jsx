@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { SolicitacaoContext } from "../../context/contextoFormulario";
+import { useQuery } from 'react-query';
 import PropTypes from 'prop-types';
+import { obterTipoElemento } from "../../service/api";
 
-const Input = ({ name, label, type = "text", refe}) => {
+const Input = ({ name, label, type, refe }) => {
   const [solicitacaoValue, setSolicitacaoValue] = useState("");
 
-  const { dispatch } = useContext(SolicitacaoContext)
-  // Aqui devemos acessar o estado global para obter os dados
-  // do formulário e uma maneira de atualizá-los.
 
+  const { dispatch } = useContext(SolicitacaoContext)
   /**
    * Aqui pego o evento do input e atualizo o estado local do input em um useState
    * @author Matheus Silva
@@ -16,10 +16,10 @@ const Input = ({ name, label, type = "text", refe}) => {
    * @returns {void}
    */
   const onChange = (e) => {
-    let {value} = e.target;
+    let { value } = e.target;
     setSolicitacaoValue(value)
   };
-  
+
 
   /**
    * Efetua o dispatch no context e atualiza o estado global
@@ -41,6 +41,32 @@ const Input = ({ name, label, type = "text", refe}) => {
       }
     })
   };
+  if (type === 'datalist') {
+    const { data } = useQuery(
+      "obterTipoElemento",
+      obterTipoElemento
+    );
+    return (
+      <>
+        <div className="input-receptor">
+          <label htmlFor={name}>{label}</label>
+          <select
+            name="tiposElement"
+            value={solicitacaoValue}
+            id={name}
+            onChange={onChange}
+            onBlur={onBlur}
+          >
+            {data?.results.map(item => (
+              <option value={item.name} key={item.name} > {item.name}</option>
+            ))}
+          </select>
+        </div>
+      </>
+
+    )
+  }
+
 
   return (
     <div className="input-receptor">
