@@ -49,7 +49,7 @@ const Formulario = () => {
                 <span>Pokémon</span>
               </p>
               <Input refe="POKEMON" type="text" name="nomePokemon" label="Nome" />
-              <Input refe="POKEMON" type="datalist" name="tipoPokemon" label="Tipo pokemon" />
+              <Input refe="POKEMON" type="select" name="tipoPokemon" label="Tipo pokemon" />
               <Input refe="POKEMON" type="text" name="elemento" label="Elemento" />
               <Input refe="POKEMON" type="text" name="altura" label="Altura" />
               <Input refe="POKEMON" type="text" name="idade" label="Idade" />

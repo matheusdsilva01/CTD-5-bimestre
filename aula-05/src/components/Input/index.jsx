@@ -41,7 +41,7 @@ const Input = ({ name, label, type, refe }) => {
       }
     })
   };
-  if (type === 'datalist') {
+  if (type === 'select') {
     const { data } = useQuery(
       "obterTipoElemento",
       obterTipoElemento
