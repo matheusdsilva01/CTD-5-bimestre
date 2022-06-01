@@ -1,8 +1,20 @@
 import React, { useContext } from "react";
 import { SolicitacaoContext } from "../../context/contextoFormulario";
-
+import { useMutation } from "react-query";
 
 const Detalhe = () => {
+
+  const mutation = useMutation((solicitacao) => {
+    return fetch('https://localhost:8080/solicitacao', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(solicitacao),
+    });
+  })
+  mutation.isError ? alert("Formulário enviado") : null
+  mutation.isSuccess ? alert("Não foi possível enviar o formulário, por favor tente novamente") : null
 
   // Aqui devemos pegar os dados do formulário para podermos mostrá-lo em a visualização.
   const { state } = useContext(SolicitacaoContext)
@@ -32,7 +44,9 @@ const Detalhe = () => {
       </section>
       <button
         className="botao-enviar"
-        onClick={() => alert("Solicitação enviada :)")}
+        onClick={() => {
+          mutation.mutate({ state })
+        }}
       >
         Enviar Solicitação
       </button>
