@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import { SolicitacaoContext } from "../../context/contextoFormulario";
-import { useQuery } from 'react-query';
 import PropTypes from 'prop-types';
-import { obterTipoElemento } from "../../service/api";
+import React, { useContext, useState } from "react";
+
+import { SolicitacaoContext } from "../../context/contextoFormulario";
+
 
 const Input = ({ name, label, type, refe }) => {
   const [solicitacaoValue, setSolicitacaoValue] = useState("");
@@ -30,10 +30,6 @@ const Input = ({ name, label, type, refe }) => {
   const onBlur = (e) => {
     e.preventDefault();
 
-    // Aqui devemos atualizar o estado global com os dados de
-    // cada entrada.
-    // DICA: Podemos usar o nome de cada entrada para salvar
-    // os dados no estado global usando uma notação { chave: valor }
     dispatch({
       type: `ATUALIZAR_${refe}`,
       payload: {
@@ -41,31 +37,6 @@ const Input = ({ name, label, type, refe }) => {
       }
     })
   };
-  if (type === 'select') {
-    const { data } = useQuery(
-      "obterTipoElemento",
-      obterTipoElemento
-    );
-    return (
-      <>
-        <div className="input-receptor">
-          <label htmlFor={name}>{label}</label>
-          <select
-            name="tiposElement"
-            value={solicitacaoValue}
-            id={name}
-            onChange={onChange}
-            onBlur={onBlur}
-          >
-            {data?.results.map(item => (
-              <option value={item.name} key={item.name} > {item.name}</option>
-            ))}
-          </select>
-        </div>
-      </>
-
-    )
-  }
 
 
   return (

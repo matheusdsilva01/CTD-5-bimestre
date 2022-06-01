@@ -4,12 +4,8 @@ import pikachu from "../../assets/pikachu.png";
 import pokebola from "../../assets/pokebola.png";
 import treinador from "../../assets/treinador.png";
 import Input from "../Input";
+import Select from '../Select';
 import Detalhe from "./detalhe";
-
-// Neste componente temos nosso formulário e dentro dele
-// temos os componentes que precisam consumir nosso estado.
-// Lembre-se qual é o passo que devemos dar para que nosso
-// componentes podem consumir um estado global.
 
 const Formulario = () => {
   return (
@@ -49,7 +45,7 @@ const Formulario = () => {
                 <span>Pokémon</span>
               </p>
               <Input refe="POKEMON" type="text" name="nomePokemon" label="Nome" />
-              <Input refe="POKEMON" type="select" name="tipoPokemon" label="Tipo pokemon" />
+              <Select refe="POKEMON" name="tipoPokemon" label="Tipo pokemon" />
               <Input refe="POKEMON" type="text" name="elemento" label="Elemento" />
               <Input refe="POKEMON" type="text" name="altura" label="Altura" />
               <Input refe="POKEMON" type="text" name="idade" label="Idade" />
