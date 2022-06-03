@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { SolicitacaoContext } from "../../context/contextoFormulario";
 import { useMutation } from "react-query";
+import baseURL from "../../service/api";
 import axios from "axios";
 
 const Detalhe = () => {
 
   const mutation = useMutation((solicitacao) => {
-    return axios.post('http://localhost:3001/solicitacao', solicitacao);
+    return axios.post(`${baseURL}/solicitacao`, solicitacao);
   });
 
   console.log(import.meta.env);

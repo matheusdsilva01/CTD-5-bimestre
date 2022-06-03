@@ -17,3 +17,6 @@ export const obterEspecies = async (offset) => {
     console.log(err)
   }
 }
+
+const baseURL = axios.create({baseURL: import.meta.env.ITE_VERCEL_API_DC_ENDPOINT})  
+export default baseURL;
