@@ -45,6 +45,7 @@ const InputEspecie = ({ name, label, refe }) => {
       {mostrarPopup && (
         <div className="popup-especie">
           <h4>Selecionar espécie</h4>
+          <button type="button" className="fechar-modal" onClick={() => setMostrarPopup(false)}>X</button>
           <div className="receptor-especies">{renderizarEspecies()}</div>
           <div className="paginacao">
             <button

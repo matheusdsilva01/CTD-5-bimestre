@@ -1,20 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SolicitacaoContext } from "../../context/contextoFormulario";
 import { useMutation } from "react-query";
+import axios from "axios";
 
 const Detalhe = () => {
 
   const mutation = useMutation((solicitacao) => {
-    return fetch('https://localhost:8080/solicitacao', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(solicitacao),
-    });
-  })
-  mutation.isError ? alert("Formulário enviado") : null
-  mutation.isSuccess ? alert("Não foi possível enviar o formulário, por favor tente novamente") : null
+    return axios.post('http://localhost:3001/solicitacao', solicitacao);
+  });
+
+  console.log(import.meta.env);
+
+
+  useEffect(() => {
+    mutation.isSuccess ? alert("Não foi possível enviar o formulário, por favor tente novamente") : null
+    mutation.isError ? alert("Formulário enviado") : null
+  }, [mutation]);
 
   // Aqui devemos pegar os dados do formulário para podermos mostrá-lo em a visualização.
   const { state } = useContext(SolicitacaoContext)
@@ -45,11 +46,9 @@ const Detalhe = () => {
       </section>
       <button
         className="botao-enviar"
-        onClick={() => {
-          mutation.mutate({ state })
-        }}
+        onClick={() => mutation.mutate(state)}
       >
-        Enviar Solicitação
+        {mutation.isLoading ? "Enviando formulário" : 'Enviar solicitação'}
       </button>
     </div>
   );

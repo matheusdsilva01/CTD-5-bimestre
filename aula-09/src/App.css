@@ -233,6 +233,17 @@ h1 {
   border: 2px solid lightgrey;
   box-shadow: 3px 3px 3px 3px darkgray;
 }
+.popup-especie .fechar-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 1px solid darkgray;
+  color: whitesmoke;
+  background-color: #ed5564;
+}
 
 .receptor-especies {
   width: 100%;
@@ -293,4 +304,10 @@ h1 {
 
 .botao-anterior {
   margin-right: 1rem;
+}
+button:disabled{
+  opacity: 50%;
+}
+button:disabled:hover{
+  opacity: 50%;
 }
