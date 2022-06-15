@@ -1,0 +1,20 @@
+{
+  "solicitacao": [
+    {
+      "id": 1,
+      "treinador": {
+        "nome": "Matheus",
+        "sobrenome": "Silva",
+        "email": "matheus.silva@gmail.com"
+      },
+      "pokemon": {
+        "nomePokemon": "Charmander",
+        "tipoPokemon": "Fogo",
+        "elemento": "Fogo",
+        "altura": "0,7",
+        "idade": "16",
+        "especiePokemon": "Charmander"
+      }
+    }
+  ]
+}
