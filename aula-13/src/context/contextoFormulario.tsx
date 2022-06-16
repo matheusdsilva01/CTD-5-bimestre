@@ -18,12 +18,7 @@ const initialState = {
     }
 }
 
-/**
- * Função redutora redutora que recebe estado atual e as funções de dispatch
- * @param {initialState} state 
- * @param {*} action 
- * @returns 
- */
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "ATUALIZAR_TREINADOR":

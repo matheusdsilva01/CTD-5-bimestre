@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useContext, useState } from "react";
 
 import { SolicitacaoContext } from "../../context/contextoFormulario";
@@ -52,15 +51,5 @@ const Input = ({ name, label, type, refe }) => {
     </div>
   );
 };
-
-Input.defaultProps = {
-  type: "text"
-}
-Input.PropTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  refe: PropTypes.string.isRequired
-}
 
 export default Input;
