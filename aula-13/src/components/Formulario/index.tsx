@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import pikachu from "../../assets/pikachu.png";
 import pokebola from "../../assets/pokebola.png";
@@ -26,10 +25,6 @@ const Formulario = () => {
           Por favor, preencha o formulário para que possamos mostrar seu Pokémon
         </p>
         <div className="corpo-formulario">
-          {/*
-           Se ao menos tivéssemos uma maneira de "encapsular" nossos componentes
-           para que possam acessar o estado global.
-          */}
           <div className="inputs">
             <div>
               <p className="nome-secao">

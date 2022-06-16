@@ -1,9 +1,18 @@
-import React, { useContext, useState } from "react";
-import { obterTipoElemento } from "../../service/api";
+import { ChangeEvent, FocusEvent, JSXElementConstructor, Key, ReactElement, ReactFragment, useContext, useState } from "react";
 import { useQuery } from 'react-query';
 import { SolicitacaoContext } from "../../context/contextoFormulario";
+import { obterTipoElemento } from "../../service/api";
 
-export default function index({ name, label, refe }) {
+type ISelectProps = {
+    name: string;
+    label: string;
+    refe: string;
+}
+type IData = {
+    nome: string;
+}
+
+export default function index({ name, label, refe }: ISelectProps) {
     const { data, isLoading, isError } = useQuery(
         "obterTipoElemento",
         obterTipoElemento
@@ -13,11 +22,10 @@ export default function index({ name, label, refe }) {
     const { dispatch } = useContext(SolicitacaoContext)
     /**
      * Aqui pego o evento do input e atualizo o estado local do input em um useState
-     * @author Matheus Silva
-     * @param {EventListener} event - Evento do input 
+     * @param {EventListener} e - Evento do input
      * @returns {void}
      */
-    const onChange = (e) => {
+    const onChange = (e: ChangeEvent<HTMLSelectElement>): void => {
         let { value } = e.target;
         setSolicitacaoValue(value)
     };
@@ -29,7 +37,7 @@ export default function index({ name, label, refe }) {
      * @param {EventListener} e - evento onBlur do input
      * @returns
      */
-    const onBlur = (e) => {
+    const onBlur = (e: FocusEvent<HTMLSelectElement>) => {
         e.preventDefault();
 
         dispatch({
@@ -51,7 +59,7 @@ export default function index({ name, label, refe }) {
                     id={name}
                     onChange={onChange}
                     onBlur={onBlur} >
-                    {data?.results.map(item => (
+                    {data?.results.map((item) => (
                         <option value={item.name} key={item.name} > {item.name}</option>
                     ))}
                 </select>

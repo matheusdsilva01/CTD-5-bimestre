@@ -1,9 +1,14 @@
-import React, { useContext, useState } from "react";
+import { FocusEvent,ChangeEvent, useContext, useState } from "react";
 
 import { SolicitacaoContext } from "../../context/contextoFormulario";
 
-
-const Input = ({ name, label, type, refe }) => {
+interface IInputProps {
+  name: string;
+  label: string;
+  type: string;
+  refe: string;
+}
+const Input = ({ name, label, type, refe }: IInputProps) => {
   const [solicitacaoValue, setSolicitacaoValue] = useState("");
 
 
@@ -14,7 +19,7 @@ const Input = ({ name, label, type, refe }) => {
    * @param {EventListener} event - Evento do input 
    * @returns {void}
    */
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
     let { value } = e.target;
     setSolicitacaoValue(value)
   };
@@ -26,7 +31,7 @@ const Input = ({ name, label, type, refe }) => {
    * @param {EventListener} e - evento onBlur do input
    * @returns
    */
-  const onBlur = (e) => {
+  const onBlur = (e: FocusEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     dispatch({

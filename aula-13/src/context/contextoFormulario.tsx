@@ -1,8 +1,23 @@
-import { useReducer, createContext } from "react";
+import { createContext, PropsWithChildren, useReducer } from "react";
 
 export const SolicitacaoContext = createContext({} as any);
+interface IinitialState {
+    treinador: {
+        nome: string;
+        sobrenome: string;
+        email: string;
+    };
+    pokemon: {
+        nomePokemon: string;
+        tipoPokemon: string;
+        elemento: string;
+        altura: string;
+        idade: string;
+        especiePokemon: string;
+    }
+}
 
-const initialState = {
+const initialState: IinitialState = {
     treinador: {
         nome: "",
         sobrenome: "",
@@ -14,12 +29,17 @@ const initialState = {
         elemento: "",
         altura: "",
         idade: "",
-        especiePokemon: ""
+        especiePokemon: "",
     }
 }
 
+interface IReducerAction {
+    type: string;
+    payload: object;
+}
 
-const reducer = (state, action) => {
+
+const reducer = (state: IinitialState, action: IReducerAction) => {
     switch (action.type) {
         case "ATUALIZAR_TREINADOR":
             return {
@@ -41,8 +61,8 @@ const reducer = (state, action) => {
             return state
     }
 }
-export const SolicitacaoContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
+export const SolicitacaoContextProvider = ({children}: PropsWithChildren) => {
+    const [state, dispatch] = useReducer(reducer, initialState);
     return (
         <SolicitacaoContext.Provider value={{ state, dispatch }} >
             {children}

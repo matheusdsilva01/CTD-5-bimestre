@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { SolicitacaoContext } from "../../context/contextoFormulario";
-import { useMutation } from "react-query";
-import baseURL from "../../service/api";
 import axios from "axios";
+import { useContext, useEffect } from "react";
+import { useMutation } from "react-query";
+import { SolicitacaoContext } from "../../context/contextoFormulario";
+import baseURL from "../../service/api";
 
 const Detalhe = () => {
 

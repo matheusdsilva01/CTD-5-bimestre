@@ -1,21 +1,27 @@
-import React, { useContext, useState } from "react";
+import { MouseEvent, useContext, useState } from "react";
 import { useQuery } from "react-query";
 import { SolicitacaoContext } from "../../context/contextoFormulario";
 import { obterEspecies } from "../../service/api";
 
-const InputEspecie = ({ name, label, refe }) => {
+type IInputEspecie = {
+  name: string;
+  label: string;
+  refe: string;
+}
+
+const InputEspecie = ({ name, label, refe }: IInputEspecie) => {
   const { dispatch } = useContext(SolicitacaoContext);
   const [mostrarPopup, setMostrarPopup] = useState(false);
   const [offset, setOffset] = useState(0);
 
-  const {data, error, isLoading} = useQuery(['obterEspecies', offset], () => obterEspecies(offset), {
+  const { data, error, isLoading } = useQuery(['obterEspecies', offset], () => obterEspecies(offset), {
     keepPreviousData: true
   });
 
   const previusPage = () => setOffset((old) => old - 20)
   const nextPage = () => setOffset((old) => old + 20)
 
-  const setarEspecie = (e, nomeEspecie) => {
+  const setarEspecie = (e: MouseEvent<HTMLButtonElement>, nomeEspecie: string) => {
     e.preventDefault();
     dispatch({
       type: `ATUALIZAR_${refe}`,
@@ -28,7 +34,7 @@ const InputEspecie = ({ name, label, refe }) => {
 
   const renderizarEspecies = () => (
     <>
-      {data.results.map((especie) => (
+      {data.results.map((especie: { name: string }) => (
         <button
           key={especie.name}
           className="botoes-especie"
