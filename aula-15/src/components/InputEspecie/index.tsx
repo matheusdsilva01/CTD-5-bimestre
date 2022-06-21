@@ -1,7 +1,9 @@
 import { MouseEvent, useContext, useState } from "react";
 import { useQuery } from "react-query";
 import { SolicitacaoContext } from "../../context/contextoFormulario";
+import { IEspecie } from "../../Interfaces/Especie";
 import { obterEspecies } from "../../service/api";
+import ButtonEspecie from "../ButtonEspecie";
 
 type IInputEspecie = {
   name: string;
@@ -14,7 +16,7 @@ const InputEspecie = ({ name, label, refe }: IInputEspecie) => {
   const [mostrarPopup, setMostrarPopup] = useState(false);
   const [offset, setOffset] = useState(0);
 
-  const { data, error, isLoading } = useQuery(['obterEspecies', offset], () => obterEspecies(offset), {
+  const { data, isLoading } = useQuery(['obterEspecies', offset], () => obterEspecies(offset), {
     keepPreviousData: true
   });
 
@@ -31,17 +33,12 @@ const InputEspecie = ({ name, label, refe }: IInputEspecie) => {
     })
     setMostrarPopup(false);
   }
+  console.log(data)
 
   const renderizarEspecies = () => (
     <>
-      {data.results.map((especie: { name: string }) => (
-        <button
-          key={especie.name}
-          className="botoes-especie"
-          onClick={(e) => setarEspecie(e, especie.name)}
-        >
-          {especie.name}
-        </button>
+      {data.results.map(({name}: IEspecie) => (
+        <ButtonEspecie key={name} name={name} onClick={setarEspecie} />
       ))}
     </>
   );

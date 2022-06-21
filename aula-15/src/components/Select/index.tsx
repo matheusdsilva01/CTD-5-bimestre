@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, JSXElementConstructor, Key, ReactElement, ReactFragment, useContext, useState } from "react";
+import { ChangeEvent, FocusEvent, useContext, useState } from "react";
 import { useQuery } from 'react-query';
 import { SolicitacaoContext } from "../../context/contextoFormulario";
 import { obterTipoElemento } from "../../service/api";
